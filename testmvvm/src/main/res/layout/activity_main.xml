@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="userviewmodel"
+            type="com.allure.testmvvm.model.UserViewModel"></variable>
+
+
+        <!--<variable-->
+        <!--name="usermodel"-->
+        <!--type="com.allure.testmvvm.model.UserModel"></variable>-->
+
+        <import type="com.allure.testmvvm.model.UserModel2"></import>
+
+        <variable
+            name="usermodel"
+            type="UserModel2"></variable>
+
+        <variable
+            name="usermodel3"
+            type="com.allure.testmvvm.model.UserModel3"></variable>
+
+        <import type="android.text.TextUtils"></import>
+
+        <import
+            alias="MyUtils"
+            type="com.allure.testmvvm.util.TextUtils"></import>
+
+        <variable
+            name="myutils"
+            type="MyUtils"></variable>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.allure.testmvvm.MainActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{(v)->userviewmodel.showName()}"
+            android:text="@{usermodel.name}" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{myutils.getName()}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{TextUtils.isEmpty(usermodel.name)?null:usermodel.name}" />
+
+
+        <ImageView
+            app:showUserPhoto="@{usermodel.userPhoto}"
+            android:layout_width="50dp"
+            android:layout_height="100dp" />
+
+        <TextView
+            android:text="@{usermodel3.desc}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:onClick="@{(v)->userviewmodel.update()}"
+            android:text="实现Obeservable更新"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:onClick="@{(v)->userviewmodel.update2()}"
+            android:text="继承BaeObeservable更新"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:onClick="@{(v)->userviewmodel.update3()}"
+            android:text="ObservableFields"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</layout>
+
